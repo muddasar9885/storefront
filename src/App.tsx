@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useContext } from 'react';
+import CategoryDropdown from './CategoryDropdown';
+import ProductBarChart from './ProductBarChart';
+import ProductTable from './ProductTable';
+import ProductDetails from './ProductDetails';
+import StoreProvider, { StoreContext } from './StoreContext';
+import ProductDropdown from './ProductDropdown';
 
-function App() {
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <StoreProvider>
+      <div style={{ display: 'flex', justifyContent: 'center', background: 'black'}}>
+          <h1 style={{color: 'white'}}> My Fab Store</h1>
+      </div>
+      <div style={{ display: 'flex', flex: 1, flexDirection: 'row', margin: 16 }}>
+        <div style={{display: 'flex', flexDirection: 'column'}}>
+          <CategoryDropdown />
+          <ProductDropdown />
+        </div>
+        <div style={{ display: 'flex', flex: 0.8, justifyContent: 'center', alignItems: 'center', flexDirection: 'column', padding: 16}}>
+          <ProductBarChart />
+          <ProductTable />
+          <ProductDetails />
+        </div>
+      </div>
+    </StoreProvider>
   );
-}
+};
 
 export default App;
